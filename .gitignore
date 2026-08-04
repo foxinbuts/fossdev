@@ -1,0 +1,42 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+nosetests.xml
+coverage.xml
+*.cover
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Sphinx documentation build
+docs/build/
+
+# SSH keys & secrets
+fossdev
+fossdev.pub
+id_*
+*.pem
+*.key
+
+# Compiled binaries
+makeutil/capp/app
+makeutil/capp/another-app
+
+# Non-public / local documents
+*.pdf
