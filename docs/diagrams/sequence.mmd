@@ -1,0 +1,41 @@
+sequenceDiagram
+    autonumber
+    actor User as Пользователь
+    participant CLI as CLI Приложение (sales)
+    participant Reader as sales.reader
+    participant Calc as sales.calculator
+    participant Reporter as sales.reporter
+
+    User->>CLI: sales -i data.csv -t 30.0 -d 10.0 -o report.txt
+    activate CLI
+
+    CLI->>Reader: read_data("data.csv")
+    activate Reader
+    Note over Reader: Построчное чтение, валидация полей,<br/>пропуск некорректных строк
+    Reader-->>CLI: list[SaleRecord]
+    deactivate Reader
+
+    opt Порог задан (threshold = 30.0)
+        CLI->>Calc: filter_by_threshold(records, 30.0)
+        activate Calc
+        Calc-->>CLI: filtered_records
+        deactivate Calc
+    end
+
+    CLI->>Reporter: generate_report(records, discount=10.0)
+    activate Reporter
+    Reporter->>Calc: aggregate_by_categories(records)
+    activate Calc
+    Calc-->>Reporter: dict[category, total]
+    deactivate Calc
+
+    Reporter->>Calc: calculate_total(records, discount=10.0)
+    activate Calc
+    Calc-->>Reporter: grand_total
+    deactivate Calc
+
+    Reporter-->>CLI: report_text
+    deactivate Reporter
+
+    CLI->>User: Сохранение report.txt и завершение (код 0)
+    deactivate CLI
