@@ -1,0 +1,16 @@
+flowchart TD
+    User["Пользователь (Менеджер / Аналитик)"]
+    InputFile["Входной CSV-файл с логами продаж"]
+    OutputFile["Выходной отчет (текстовый файл / stdout)"]
+
+    subgraph SalesSystem["Система аналитики продаж (Sales Analytics)"]
+        CLI["Запускаемое CLI-приложение (sales / app.main)"]
+        Core["Переиспользуемый компонент sales (Core Library)"]
+        CLI --> Core
+    end
+
+    User -->|"Передает параметры и путь к файлу"| CLI
+    InputFile -->|"Чтение строк данных"| Core
+    Core -->|"Сформированный отчет"| CLI
+    CLI -->|"Вывод результатов"| OutputFile
+    OutputFile --> User
