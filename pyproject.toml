@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sales"
+version = "0.1.0"
+description = "Sales analytics domain library and CLI application"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+    {name = "foxinbandage", email = "akmammedowjuma@gmail.com"}
+]
+keywords = ["sales", "analytics", "reporting", "cli"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Topic :: Office/Business :: Financial",
+]
+dependencies = []
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+]
+docs = [
+    "sphinx>=7.2.0",
+    "myst-parser>=2.0.0",
+]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "sphinx>=7.2.0",
+    "myst-parser>=2.0.0",
+]
+
+[project.scripts]
+sales = "sales.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --cov=sales --cov-report=term-missing"
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.coverage.run]
+source = ["sales"]
+omit = ["*/tests/*", "app/*"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 90
