@@ -1,0 +1,10 @@
+tea,drinks,7.0,5
+corrupt_line_without_enough_commas
+coffee,drinks,12.5,3
+fractional_quantity,bakery,10.0,2.5
+croissant,bakery,15.2,2
+negative_price,drinks,-5.0,2
+baguette,bakery,25.2,1
+negative_qty,fruit,4.0,-2
+apple,fruit,4.0,6
+extra,fields,in,this,row,here
