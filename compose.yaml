@@ -1,0 +1,12 @@
+services:
+  sales-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: sales:0.1.0
+    container_name: sales_analytics
+    volumes:
+      - ./data:/app/data:ro
+    command: ["-i", "/app/data/sample_sales.csv"]
+    environment:
+      - PYTHONUNBUFFERED=1
