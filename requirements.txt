@@ -1,0 +1,2 @@
+# Core runtime dependencies
+# The sales library uses the standard Python library with zero external dependencies.
